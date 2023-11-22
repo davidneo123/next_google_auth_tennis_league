@@ -6,8 +6,6 @@ export default async function SignUpPage() {
     const session = await getServerSession();
     if (!!session) {
         redirect("/");
-        console.log('signup page');
-
     }
     return <Form />;
 }

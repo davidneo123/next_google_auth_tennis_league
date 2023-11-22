@@ -11,14 +11,12 @@ const validatePassword = (inputPassword: string) => inputPassword
 export async function POST(request: Request) {
     try {
         const { email, password } = await request.json();
-        console.log(validateEmail(email), validatePassword(password))
 
         if (!(validateEmail(email) && validatePassword(password)))
             return new NextResponse(
                 JSON.stringify({ success: false, message: 'Wrong email or password' }),
                 { status: 400, headers: { 'content-type': 'application/json' } });
 
-        console.log({ email, password });
         const hashPswd = await hash(password, 10);
         const response = await sql`
         INSERT INTO users (email, password)
