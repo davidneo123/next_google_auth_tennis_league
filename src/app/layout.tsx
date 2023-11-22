@@ -1,4 +1,4 @@
-import Appbar from "./components/Appbar";
+import TopBar from "./components/TopBar";
 import Providers from "./components/Providers";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -13,11 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <Providers>
-          <Appbar />
-
-          {children}
+          <TopBar />
+          <div className="flex min-h-screen p-24">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
